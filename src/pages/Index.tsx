@@ -1,13 +1,10 @@
-import { DollarSign, ShoppingCart, RotateCcw, TrendingUp, Calendar } from "lucide-react";
-import MetricCard from "@/components/MetricCard";
+import { Calendar } from "lucide-react";
+import SalesMetrics from "@/components/SalesMetrics";
+import ExpensesBreakdown from "@/components/ExpensesBreakdown";
 import RevenueChart from "@/components/RevenueChart";
 import OrdersChart from "@/components/OrdersChart";
 import ProductsTable from "@/components/ProductsTable";
 import DashboardSidebar from "@/components/DashboardSidebar";
-import { summaryMetrics } from "@/data/mockData";
-
-const formatCurrency = (n: number) =>
-  new Intl.NumberFormat("ru-RU", { style: "currency", currency: "RUB", maximumFractionDigits: 0 }).format(n);
 
 const Index = () => {
   return (
@@ -29,37 +26,11 @@ const Index = () => {
 
         {/* Content */}
         <div className="p-8 space-y-6">
-          {/* Metric cards */}
-          <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-            <MetricCard
-              title="Выручка"
-              value={formatCurrency(summaryMetrics.totalRevenue)}
-              change={summaryMetrics.revenueChange}
-              icon={<DollarSign className="w-4 h-4" />}
-              delay={0}
-            />
-            <MetricCard
-              title="Заказы"
-              value={summaryMetrics.totalOrders.toLocaleString("ru-RU")}
-              change={summaryMetrics.ordersChange}
-              icon={<ShoppingCart className="w-4 h-4" />}
-              delay={100}
-            />
-            <MetricCard
-              title="Возвраты"
-              value={summaryMetrics.totalReturns.toLocaleString("ru-RU")}
-              change={summaryMetrics.returnsChange}
-              icon={<RotateCcw className="w-4 h-4" />}
-              delay={200}
-            />
-            <MetricCard
-              title="Прибыль"
-              value={formatCurrency(summaryMetrics.totalProfit)}
-              change={summaryMetrics.profitChange}
-              icon={<TrendingUp className="w-4 h-4" />}
-              delay={300}
-            />
-          </div>
+          {/* Sales metrics */}
+          <SalesMetrics />
+
+          {/* Expenses breakdown */}
+          <ExpensesBreakdown />
 
           {/* Charts */}
           <div className="grid grid-cols-1 xl:grid-cols-2 gap-6">
